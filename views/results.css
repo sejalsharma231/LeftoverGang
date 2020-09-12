@@ -1,0 +1,57 @@
+.row {
+	display:flex; 
+	flex-wrap:wrap;
+
+}
+
+body{
+	background: url('images/resultspage-min.jpg') no-repeat center fixed;
+	background-size: cover;
+	background-position: center;
+	font-family: Lato, sans-serif;
+	padding-top: 70px; 	
+}
+h1{
+	
+	font-size: 60px;
+}
+
+#addRecipieNumber{
+	margin-bottom:25px;
+	color:white;
+}
+
+
+
+.right{
+	float: left;
+}
+.time{
+	color: black;
+}
+.ingrediants{
+	display:inline-block;
+}
+
+#container{
+	color: white;
+	
+}
+
+span:after {
+    content: '\A';
+}
+
+#check{
+	border:0;
+}
+
+
+#check:checked + label {
+    color: blue;
+}
+
+
+.navbar  a:hover {
+						color: rgba(100,98,102, 0.25) !important;
+					}

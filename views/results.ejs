@@ -1,0 +1,248 @@
+<%- include("partials/header") %>
+
+ 	<link href="results.css" rel="stylesheet" type="text/css">
+
+		
+<div class = "container">
+
+		<div id="addRecipieNumber" class="container" >
+			<h1>Results!</h1>
+			<h3>You can make
+				<span id="counting"></span>	
+			recipies</h3>	
+		</div>
+	
+	<%var str=query[0];%>
+	
+	<%var cooking=time;%>
+
+	
+	<div id="container" class="col-lg-3 col-md-3 col-sm-3 col-xs-5 form-check">
+		<div >
+			<h3>Dairy <i class="fa fa-plus" id="dairy"></i></h3>
+			<div class= "ingrediants dairy"></div>
+		</div> 
+		<div >
+			<h3>Grains <i class="fa fa-plus" id="grains"></i></h3>
+			<div class= "ingrediants grains"></div>
+		</div>
+		<div >
+			<h3>Vegetables <i class="fa fa-plus" id ="vegetables"></i></h3>
+			<div class= "ingrediants vegetables"></div>
+		</div>
+		<div >
+			<h3>Fruit <i class="fa fa-plus" id = "fruit"></i></h3>
+			<div class= "ingrediants fruit"></div>
+		</div>
+		<div >
+			<h3>Alcohol <i class="fa fa-plus"id ="alcohol"></i></h3>
+			<div class= "ingrediants alcohol"></div>
+		</div>
+		<div >
+			<h3>Spices <i class="fa fa-plus" id="spices"></i></h3>
+			<div class= "ingrediants spices"></div>
+		</div>
+		<div >
+			<h3>Meat <i class="fa fa-plus" id="meat"></i></h3>
+			<div class= "ingrediants meat"></div>
+		</div>
+			<div >
+			<h3>Seafood <i class="fa fa-plus" id="seafood"></i></h3>
+			<div class= "ingrediants seafood"></div>
+		</div>
+ <form action="/results" method="get">
+	<input type= "text" style ="display: none" name = "search" class ="imp">
+	 <input type= "text" placeholder="max cooking time(optional)" name = "maxReadyTime" class= "time" id="time">
+<button class ="btn btn-primary btn-large" id = "update"> update </button>
+		</form>
+	</div>
+
+		<%var counter=0;%>
+<div class = "row text-center col-lg-9 col-md-9 col-sm-9 col-xs-7" style="color:black" >
+
+	 <%result.results.forEach(function(item){
+		 counter+=1;%>
+		<div class = "col-lg-4 col-md-4 col-sm-6 col-xs-12">
+		<div class = "thumbnail">
+		<h3> <%=item.title%> </h3>
+		<img src="<%= item.image %>">
+		Missing ingredients: <%=item.missedIngredientCount%>
+		<br>
+		<a href = "<%=item.sourceUrl%>"> Take me to the website! </a>
+		</div>
+		</div>
+	<% } )%>
+
+	</div>
+	
+</div>
+
+
+<script>
+	var strGet ="<%=str%>";
+	var counterGet ="<%=counter%>";
+	console.log(counterGet);
+
+var ingrediants = document.querySelectorAll(".ingrediants")
+var btn = document.querySelectorAll(".fa")
+var sections= [{name:"dairy",
+list:["Butter","Buttermilk","Condensed Milk","Cottage Cheese","Cream","Curds","Custard","Dry Milk Powder",
+  "Evaporated Milk","Ghee","Goat Cheese","Cheddar Cheese","Mozarella Cheese","Goat Milk","Half & Half","Low-Fat Milk","Milk","Nonfat Milk","Blue Cheese","Parmesan","American Cheese", "Swiss Cheese", "Pepperjack Cheese", "Gouda","brie","halloumi",
+"Paneer","Pudding","Sheep Milk","Sheep Milk Cheese","Skim Milk","Sour Cream","Sweetened Condensed Milk","Whipped Cream",
+  "Whole Milk","Yogurt"]},
+  {name:"grains",
+   list:["rice","pasta","flour","yeast","corn flour"]},
+  {name:"vegetables",
+   list:["onion","tomato","cherry tomato","eggplant","celery","garlic","bok choy","spinach","potatot","carrot","bell pepper","basil","parsley","broccoli", "corn","mushroom","green beans","ginger","chilli pepper","celery","cucumber","sweet potato","pickle","avocado","zucchini","cilantro","olives","cabbage","asparagus","cauliflower","kale","mint","pumpkin","scallion","brussels sprout","chia seeds","radish","okra","seaweed"] },
+  {name:"fruit",
+   list:["apple","banana","strawberry","kiwi","blackberry","rasberry","blueberry", "rhubarb","mango","pinapple"]},
+  {name:"alcohol",
+   list:["red wine","white wine","beer","rum","whiskey","vodka","gin","tequila"] },
+  {name:"spices",
+   list:["paprika","garlic powder","onion powder","poppy seed","oregano","dill", "vinalla","mint","basil","cayenne","thyme","nutmeg","italien seasoning","red chili flake","chili powder","cardamom"]},
+  {name:"meat",
+   list:["chicken breast","chicken thigh","rotissary chicken","ground beef","bacon","sausage","steak","turkey","ham","pancetta","lamb","chicken wings","prosciutto","chorizo","pepperoni","salami"]},
+  {name:"seafood",
+   list:["lobster","crab","salmon","tuna","shrimp","calamari","oyster","shrimp", "anchovy","sardine","cod","mussel","octopus","scallop","prawns","whitefish"]}
+  ];
+
+init();
+function init(){
+openCloseSetup();
+hideIngredients();	
+
+}
+//Updating checked boxes
+var strList=[];
+var word="";
+  for(var h = 0; h < strGet.length; h++) {
+		if(strGet[h]===","){
+			strList.push(word);
+			word="";
+		}else{
+			word+=strGet[h];
+		}
+}
+
+	function animateValue(id, start, end, duration) {
+    var range = end - start;
+    var current = start;
+    var increment = end > start? 1 : -1;
+    var stepTime = Math.abs(Math.floor(duration / range));
+    var obj = document.getElementById(id);
+    var timer = setInterval(function() {
+        current += increment;
+        obj.innerHTML = current;
+        if (current == end) {
+            clearInterval(timer);
+        }
+    }, stepTime);
+}
+
+animateValue("counting", 0, counterGet, 2000);
+	
+	
+	
+
+//making the checboxes and checking them
+var index =0;
+ingrediants.forEach(function(space){
+for (var i = 0; i < sections[index].list.length; i++) {
+ 	var div = space; //ul
+    var span = document.createElement('span');
+	
+    var checkbox = document.createElement('input');
+        checkbox.type = "checkbox";
+        checkbox.id = sections[index].list[i];
+        checkbox.name = sections[index].list[i];
+	
+	var label = document.createElement('label')
+	label.htmlFor = checkbox.name;//was i
+ 	label.appendChild(document.createTextNode(sections[index].list[i]));
+ 	
+
+	$(span).addClass("right");
+        span.appendChild(checkbox);
+       span.appendChild(label);
+      
+	    div.appendChild(span);
+	for(var e=0;e<strList.length;e++){
+		if(strList[e]==sections[index].list[i]){
+		 document.getElementById(sections[index].list[i]).checked = true;
+		}
+	}
+		}
+	index +=1;
+});
+	
+
+	
+	
+
+function openCloseSetup(){
+	for (var i = 0; i < btn.length; i++) {
+		btn[i].addEventListener("click", function(){
+
+		$(this).toggleClass("fa-plus");
+		$(this).toggleClass("fa-minus");
+
+		for (var i = 0; i < sections.length; i++) {
+		if ($(this).attr("id")== sections[i].name){
+		var thing= "."+sections[i].name;
+		$(thing).fadeToggle(0); 
+
+		}
+		}
+
+		});
+	}
+}
+
+function hideIngredients(){
+for (var i = 0; i < sections.length; i++) {
+var thing= "."+sections[i].name;
+$(thing).fadeToggle(0); 
+};
+}
+
+
+
+
+var button = document.querySelector("#update");
+(button).addEventListener("click",function(){
+  var selectedItems="";
+ // alert("clicked");
+  var items=document.querySelectorAll('input[type=checkbox]');
+
+  for(var i=0; i<items.length; i++){
+    if(items[i].checked===true){
+     selectedItems = items[i].name+ "," + selectedItems;
+    }
+  }
+  console.log(selectedItems);
+
+var b = document.querySelector(".imp"); 
+	b.setAttribute("name", selectedItems);
+	
+});
+function getLabelText(needle) {
+    var labels = document.querySelectorAll("label");
+    var texts = "";
+    for (var i = 0; i < labels.length; i++) {
+        var label = labels[i];
+       // console.log(label.getAttribute("for"));
+        if(label.getAttribute("for") === needle) {
+            return label.innerText;
+        }
+    }
+    return false;
+}
+
+ 
+</script>	
+
+
+	
+					 
+
+<%- include("partials/footer") %>
