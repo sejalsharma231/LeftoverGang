@@ -138,8 +138,13 @@ var word="";
         }
     }, stepTime);
 }
-
-animateValue("counting", 0, counterGet, 2000);
+if(counterGet==0){
+	var counting = document.getElementById("counting");
+	counting.innerHTML = 0;
+}else{
+	animateValue("counting", 0, counterGet, 2000);
+}
+	
 	
 	
 	
