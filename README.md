@@ -1,2 +1,2 @@
 Link to the live website:
-https://leftovergang.herokuapp.com/results?onion%2C=&maxReadyTime=
+(https://leftovergang.herokuapp.com/)https://leftovergang.herokuapp.com/
