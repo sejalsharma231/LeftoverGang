@@ -13,6 +13,10 @@
     "request": "^2.88.2",
     "require": "^2.4.20"
   },
+  "engines": {
+    "node": "12.18.3",
+    "npm": "8.x"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js"
