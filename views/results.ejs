@@ -93,7 +93,7 @@ list:["Butter","Buttermilk","Condensed Milk","Cottage Cheese","Cream","Curds","C
   {name:"grains",
    list:["rice","pasta","flour","yeast","corn flour"]},
   {name:"vegetables",
-   list:["onion","tomato","cherry tomato","eggplant","celery","garlic","bok choy","spinach","potatot","carrot","bell pepper","basil","parsley","broccoli", "corn","mushroom","green beans","ginger","chilli pepper","celery","cucumber","sweet potato","pickle","avocado","zucchini","cilantro","olives","cabbage","asparagus","cauliflower","kale","mint","pumpkin","scallion","brussels sprout","chia seeds","radish","okra","seaweed"] },
+   list:["onion","tomato","cherry tomato","eggplant","celery","garlic","bok choy","spinach","potato","carrot","bell pepper","basil","parsley","broccoli", "corn","mushroom","green beans","ginger","chilli pepper","celery","cucumber","sweet potato","pickle","avocado","zucchini","cilantro","olives","cabbage","asparagus","cauliflower","kale","mint","pumpkin","scallion","brussels sprout","chia seeds","radish","okra","seaweed"] },
   {name:"fruit",
    list:["apple","banana","strawberry","kiwi","blackberry","rasberry","blueberry", "rhubarb","mango","pinapple"]},
   {name:"alcohol",
@@ -164,6 +164,7 @@ for (var i = 0; i < sections[index].list.length; i++) {
 	var label = document.createElement('label')
 	label.htmlFor = checkbox.name;//was i
  	label.appendChild(document.createTextNode(sections[index].list[i]));
+	$(label).addClass("ingredientLabels")
  	
 
 	$(span).addClass("right");
