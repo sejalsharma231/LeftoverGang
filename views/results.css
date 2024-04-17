@@ -24,13 +24,21 @@ h1{
 
 
 .right{
-	float: left;
+	margin-left: 5px;
+	display: flex;
+    align-items: flex-start;
+}
+
+.ingredientLabels {
+	padding-left: 3px;
 }
 .time{
 	color: black;
 }
 .ingrediants{
-	display:inline-block;
+	display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 #container{

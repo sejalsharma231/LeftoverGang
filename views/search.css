@@ -55,6 +55,15 @@ span:after {
     color: blue;
 }
 
+.ingredientLabels {
+	padding-left: 5px;
+}
+
+.itemsFull{
+	display: flex;
+    align-items: flex-start;
+}
+
 
 
 /* Dropdown button on hover & focus */
@@ -100,7 +109,6 @@ color: black;
 padding: 12px 16px;
 background-color: #f6f6f6;
 text-decoration: none;
-display: block;
 width:231px;
 
 }
