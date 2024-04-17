@@ -43,8 +43,7 @@ app.get("/results", (req, res) => {
     });
 });
 
-// var port = process.env.PORT || 400;
-var port = 4000;
+var port = process.env.PORT || 4000;
 app.listen(port, function () {
     console.log("Server Has Started!");
 });
